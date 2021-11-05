@@ -1,0 +1,4 @@
+parameters:
+  blackbox_exporter:
+    =_metadata: {}
+    namespace: syn-blackbox-exporter

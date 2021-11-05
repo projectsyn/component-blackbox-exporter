@@ -1,0 +1,5 @@
+= blackbox-exporter
+
+blackbox-exporter is a Commodore component to manage blackbox-exporter.
+
+See the xref:references/parameters.adoc[parameters] reference for further details.

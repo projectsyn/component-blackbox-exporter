@@ -1,0 +1,7 @@
+:global:
+  componentName: blackbox-exporter
+  githubUrl: https://github.com/projectsyn/component-blackbox-exporter
+
+docs/antora.yml:
+  name: blackbox-exporter
+  title: blackbox-exporter
