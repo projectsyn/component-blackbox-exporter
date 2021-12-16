@@ -10,10 +10,49 @@ default:: `syn-blackbox-exporter`
 
 The namespace in which to deploy this component.
 
+== `createNamespace`
+
+[horizontal]
+type:: bool
+default:: `true`
+
+If this parameter is set to `false, the component won't create the specified namespace.
+This is required for all but one instance if multiple component instances are deployed into the same namespace or if the namespace doesn't exist beforehand.
+
+== `helmValues`
+
+[horizontal]
+type:: dict
+default:: `{}`
+
+List of Helm values to pass to the Helm chart.
+For a list of supported values see: https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-blackbox-exporter/values.yaml[prometheus-blackbox-exporter Helm chart].
 
 == Example
 
 [source,yaml]
 ----
-namespace: example-namespace
+namespace: my-blackbox-exporter
+helmValues:
+  runAsUser: null # This should be set on Openshift clusters, as the default runAsUser is set to 1000, which doesn't work on Openshift by default.
+  config:
+    modules:
+      http_check:
+        prober: http
+        timeout: 5s
+        http:
+          valid_status_codes: [200, 401]
+          valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+          follow_redirects: true
+          preferred_ip_protocol: "ip4"
+  serviceMonitor:
+    enabled: true
+    defaults:
+      module: http_check
+    targets:
+      - name: foo
+        url: https://foo.tld
+      - name: bar
+        url: https://bar.com/openid/
+
 ----

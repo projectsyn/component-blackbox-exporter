@@ -2,9 +2,10 @@ local kap = import 'lib/kapitan.libjsonnet';
 local inv = kap.inventory();
 local params = inv.parameters.blackbox_exporter;
 local argocd = import 'lib/argocd.libjsonnet';
+local instance = inv.parameters._instance;
 
-local app = argocd.App('blackbox-exporter', params.namespace);
+local app = argocd.App(instance, params.namespace);
 
 {
-  'blackbox-exporter': app,
+  [instance]: app,
 }

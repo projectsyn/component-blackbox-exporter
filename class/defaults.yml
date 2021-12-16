@@ -1,4 +1,9 @@
 parameters:
   blackbox_exporter:
+    multi_instance: true
     =_metadata: {}
+    charts:
+      blackbox_exporter: 5.3.1
+    helmValues: {}
     namespace: syn-blackbox-exporter
+    createNamespace: true
