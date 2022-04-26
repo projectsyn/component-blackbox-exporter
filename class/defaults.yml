@@ -1,7 +1,7 @@
 parameters:
   blackbox_exporter:
-    multi_instance: true
-    =_metadata: {}
+    =_metadata:
+      multi_instance: true
     charts:
       blackbox_exporter: 5.3.1
     helmValues: {}
