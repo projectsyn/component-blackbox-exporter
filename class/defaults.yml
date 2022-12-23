@@ -3,7 +3,7 @@ parameters:
     =_metadata:
       multi_instance: true
     charts:
-      blackbox_exporter: 7.0.1
+      blackbox_exporter: 7.1.3
     helmValues: {}
     namespace: syn-blackbox-exporter
     createNamespace: true
