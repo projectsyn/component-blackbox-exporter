@@ -2,8 +2,15 @@ parameters:
   blackbox_exporter:
     =_metadata:
       multi_instance: true
-    charts:
-      blackbox_exporter: 7.1.3
-    helmValues: {}
+
     namespace: syn-blackbox-exporter
     createNamespace: true
+
+    charts:
+      blackbox_exporter: 7.1.3
+
+    helmValues:
+      pspEnabled: false
+      securityContext:
+        runAsUser: null
+        runAsGroup: null
