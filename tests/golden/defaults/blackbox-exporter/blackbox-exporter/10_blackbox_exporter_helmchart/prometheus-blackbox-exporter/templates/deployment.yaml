@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: 0.22.0
-    helm.sh/chart: prometheus-blackbox-exporter-7.1.3
+    app.kubernetes.io/version: 0.23.0
+    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
   name: blackbox-exporter-prometheus-blackbox-exporter
   namespace: syn-blackbox-exporter
 spec:
@@ -23,13 +23,13 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: b7671e562f3c650e2b8e7dfdd5d052491ab6709ae97d362787782703e07630e7
+        checksum/config: d6143e767e5177d7dd281387cddbbace20582756c95ac252e0d57a898d283493
       labels:
         app.kubernetes.io/instance: blackbox-exporter
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: prometheus-blackbox-exporter
-        app.kubernetes.io/version: 0.22.0
-        helm.sh/chart: prometheus-blackbox-exporter-7.1.3
+        app.kubernetes.io/version: 0.23.0
+        helm.sh/chart: prometheus-blackbox-exporter-7.2.0
     spec:
       automountServiceAccountToken: false
       containers:
