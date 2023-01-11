@@ -1,0 +1,6 @@
+spec:
+  ignoreDifferences:
+    - group: monitoring.coreos.com
+      jqPathExpressions:
+        - .spec.endpoints[].metricRelabelings[]
+      kind: ServiceMonitor

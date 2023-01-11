@@ -1,0 +1,122 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app.kubernetes.io/instance: blackbox-exporter
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prometheus-blackbox-exporter
+    app.kubernetes.io/version: 0.23.0
+    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+  name: blackbox-exporter-prometheus-blackbox-exporter-http
+  namespace: syn-blackbox-exporter
+spec:
+  endpoints:
+    - interval: 30s
+      metricRelabelings:
+        - replacement: https://my-url
+          sourceLabels:
+            - instance
+          targetLabel: instance
+        - replacement: http
+          sourceLabels:
+            - target
+          targetLabel: target
+      params:
+        module:
+          - http_check
+        target:
+          - https://my-url
+      path: /probe
+      port: http
+      scheme: http
+      scrapeTimeout: 30s
+  jobLabel: blackbox-exporter
+  namespaceSelector:
+    matchNames:
+      - syn-blackbox-exporter
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: blackbox-exporter
+      app.kubernetes.io/name: prometheus-blackbox-exporter
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app.kubernetes.io/instance: blackbox-exporter
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prometheus-blackbox-exporter
+    app.kubernetes.io/version: 0.23.0
+    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+  name: blackbox-exporter-prometheus-blackbox-exporter-openid
+  namespace: syn-blackbox-exporter
+spec:
+  endpoints:
+    - interval: 30s
+      metricRelabelings:
+        - replacement: https://my-url:13342/openid/
+          sourceLabels:
+            - instance
+          targetLabel: instance
+        - replacement: openid
+          sourceLabels:
+            - target
+          targetLabel: target
+      params:
+        module:
+          - http_check
+        target:
+          - https://my-url:13342/openid/
+      path: /probe
+      port: http
+      scheme: http
+      scrapeTimeout: 30s
+  jobLabel: blackbox-exporter
+  namespaceSelector:
+    matchNames:
+      - syn-blackbox-exporter
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: blackbox-exporter
+      app.kubernetes.io/name: prometheus-blackbox-exporter
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app.kubernetes.io/instance: blackbox-exporter
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prometheus-blackbox-exporter
+    app.kubernetes.io/version: 0.23.0
+    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+  name: blackbox-exporter-prometheus-blackbox-exporter-api
+  namespace: syn-blackbox-exporter
+spec:
+  endpoints:
+    - interval: 30s
+      metricRelabelings:
+        - replacement: https://my-url:13344/api
+          sourceLabels:
+            - instance
+          targetLabel: instance
+        - replacement: api
+          sourceLabels:
+            - target
+          targetLabel: target
+      params:
+        module:
+          - http_check
+        target:
+          - https://my-url:13344/api
+      path: /probe
+      port: http
+      scheme: http
+      scrapeTimeout: 30s
+  jobLabel: blackbox-exporter
+  namespaceSelector:
+    matchNames:
+      - syn-blackbox-exporter
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: blackbox-exporter
+      app.kubernetes.io/name: prometheus-blackbox-exporter
