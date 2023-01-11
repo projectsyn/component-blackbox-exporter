@@ -7,7 +7,7 @@
       "name": "blackbox-exporter",
       "slug": "blackbox-exporter",
       "parameter_key": "blackbox_exporter",
-      "test_cases": "defaults",
+      "test_cases": "defaults servicemonitor-added-fields",
       "add_lib": "n",
       "add_pp": "n",
       "add_golden": "y",
