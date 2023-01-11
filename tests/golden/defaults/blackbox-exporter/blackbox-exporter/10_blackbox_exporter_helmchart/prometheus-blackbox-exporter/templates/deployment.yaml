@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: blackbox-exporter
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prometheus-blackbox-exporter
+    app.kubernetes.io/version: 0.23.0
+    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+  name: blackbox-exporter-prometheus-blackbox-exporter
+  namespace: syn-blackbox-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: blackbox-exporter
+      app.kubernetes.io/name: prometheus-blackbox-exporter
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        checksum/config: d6143e767e5177d7dd281387cddbbace20582756c95ac252e0d57a898d283493
+      labels:
+        app.kubernetes.io/instance: blackbox-exporter
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: prometheus-blackbox-exporter
+        app.kubernetes.io/version: 0.23.0
+        helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - args:
+            - --config.file=/config/blackbox.yaml
+          env: null
+          image: prom/blackbox-exporter:v0.22.0
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          name: blackbox-exporter
+          ports:
+            - containerPort: 9115
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+          volumeMounts:
+            - mountPath: /config
+              name: config
+      hostNetwork: false
+      restartPolicy: Always
+      securityContext: {}
+      serviceAccountName: blackbox-exporter-prometheus-blackbox-exporter
+      volumes:
+        - configMap:
+            name: blackbox-exporter-prometheus-blackbox-exporter
+          name: config

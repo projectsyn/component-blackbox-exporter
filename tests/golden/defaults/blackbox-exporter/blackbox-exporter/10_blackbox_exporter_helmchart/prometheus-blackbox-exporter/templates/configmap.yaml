@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  blackbox.yaml: "modules:\n  http_2xx:\n    http:\n      follow_redirects: true\n\
+    \      preferred_ip_protocol: ip4\n      valid_http_versions:\n      - HTTP/1.1\n\
+    \      - HTTP/2.0\n    prober: http\n    timeout: 5s\n"
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/instance: blackbox-exporter
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prometheus-blackbox-exporter
+    app.kubernetes.io/version: 0.23.0
+    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+  name: blackbox-exporter-prometheus-blackbox-exporter
+  namespace: syn-blackbox-exporter
