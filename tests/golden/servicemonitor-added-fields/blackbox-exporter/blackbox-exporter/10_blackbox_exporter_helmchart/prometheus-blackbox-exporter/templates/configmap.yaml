@@ -1,12 +1,30 @@
 apiVersion: v1
 data:
-  blackbox.yaml: "modules:\n  http_2xx:\n    http:\n      follow_redirects: true\n\
-    \      preferred_ip_protocol: ip4\n      valid_http_versions:\n      - HTTP/1.1\n\
-    \      - HTTP/2.0\n    prober: http\n    timeout: 5s\n  http_check:\n    http:\n\
-    \      follow_redirects: true\n      preferred_ip_protocol: ip4\n      tls_config:\n\
-    \        insecure_skip_verify: true\n      valid_http_versions:\n      - HTTP/1.1\n\
-    \      - HTTP/2.0\n      valid_status_codes:\n      - 200\n      - 401\n    prober:\
-    \ http\n    timeout: 5s\n"
+  blackbox.yaml: |
+    modules:
+      http_2xx:
+        http:
+          follow_redirects: true
+          preferred_ip_protocol: ip4
+          valid_http_versions:
+          - HTTP/1.1
+          - HTTP/2.0
+        prober: http
+        timeout: 5s
+      http_check:
+        http:
+          follow_redirects: true
+          preferred_ip_protocol: ip4
+          tls_config:
+            insecure_skip_verify: true
+          valid_http_versions:
+          - HTTP/1.1
+          - HTTP/2.0
+          valid_status_codes:
+          - 200
+          - 401
+        prober: http
+        timeout: 5s
 kind: ConfigMap
 metadata:
   labels:

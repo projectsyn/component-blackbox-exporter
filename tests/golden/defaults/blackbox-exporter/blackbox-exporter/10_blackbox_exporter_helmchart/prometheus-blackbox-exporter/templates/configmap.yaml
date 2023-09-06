@@ -1,8 +1,16 @@
 apiVersion: v1
 data:
-  blackbox.yaml: "modules:\n  http_2xx:\n    http:\n      follow_redirects: true\n\
-    \      preferred_ip_protocol: ip4\n      valid_http_versions:\n      - HTTP/1.1\n\
-    \      - HTTP/2.0\n    prober: http\n    timeout: 5s\n"
+  blackbox.yaml: |
+    modules:
+      http_2xx:
+        http:
+          follow_redirects: true
+          preferred_ip_protocol: ip4
+          valid_http_versions:
+          - HTTP/1.1
+          - HTTP/2.0
+        prober: http
+        timeout: 5s
 kind: ConfigMap
 metadata:
   labels:
