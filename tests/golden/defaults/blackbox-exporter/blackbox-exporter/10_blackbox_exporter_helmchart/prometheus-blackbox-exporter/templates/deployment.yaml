@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: 0.23.0
-    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+    app.kubernetes.io/version: v0.24.0
+    helm.sh/chart: prometheus-blackbox-exporter-7.12.0
   name: blackbox-exporter-prometheus-blackbox-exporter
   namespace: syn-blackbox-exporter
 spec:
@@ -23,24 +23,25 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: d6143e767e5177d7dd281387cddbbace20582756c95ac252e0d57a898d283493
+        checksum/config: 794a224d5ad81576d134a6a5e161149024274032fd3f4d4b03bed2bd7c55cb01
       labels:
         app.kubernetes.io/instance: blackbox-exporter
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: prometheus-blackbox-exporter
-        app.kubernetes.io/version: 0.23.0
-        helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+        app.kubernetes.io/version: v0.24.0
+        helm.sh/chart: prometheus-blackbox-exporter-7.12.0
     spec:
       automountServiceAccountToken: false
       containers:
         - args:
             - --config.file=/config/blackbox.yaml
           env: null
-          image: prom/blackbox-exporter:v0.22.0
+          image: prom/blackbox-exporter:v0.24.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
+            failureThreshold: 3
             httpGet:
-              path: /health
+              path: /-/healthy
               port: http
           name: blackbox-exporter
           ports:
@@ -48,7 +49,7 @@ spec:
               name: http
           readinessProbe:
             httpGet:
-              path: /health
+              path: /-/healthy
               port: http
           resources: {}
           securityContext:
