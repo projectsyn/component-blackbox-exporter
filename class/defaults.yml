@@ -2,6 +2,7 @@ parameters:
   blackbox_exporter:
     =_metadata:
       multi_instance: true
+      multi_tenant: true
 
     namespace: syn-blackbox-exporter
     createNamespace: true

@@ -18,6 +18,10 @@ local app = argocd.App(instance, params.namespace) {
   },
 };
 
+local appPath =
+  local project = std.get(app, 'spec', { project: 'syn' }).project;
+  if project == 'syn' then 'apps' else 'apps-%s' % project;
+
 {
-  [instance]: app,
+  ['%s/%s' % [ appPath, instance ]]: app,
 }
