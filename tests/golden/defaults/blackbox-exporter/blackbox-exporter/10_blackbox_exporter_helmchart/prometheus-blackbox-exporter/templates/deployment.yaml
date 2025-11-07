@@ -5,12 +5,13 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: 0.23.0
-    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+    app.kubernetes.io/version: v0.27.0
+    helm.sh/chart: prometheus-blackbox-exporter-11.4.2
   name: blackbox-exporter-prometheus-blackbox-exporter
   namespace: syn-blackbox-exporter
 spec:
   replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app.kubernetes.io/instance: blackbox-exporter
@@ -23,24 +24,24 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: d6143e767e5177d7dd281387cddbbace20582756c95ac252e0d57a898d283493
+        checksum/config: f43e733459690a84886aec93596a01748c2f936776a534eeaeb9f084e62ebb91
       labels:
         app.kubernetes.io/instance: blackbox-exporter
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: prometheus-blackbox-exporter
-        app.kubernetes.io/version: 0.23.0
-        helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+        app.kubernetes.io/version: v0.27.0
+        helm.sh/chart: prometheus-blackbox-exporter-11.4.2
     spec:
       automountServiceAccountToken: false
       containers:
         - args:
             - --config.file=/config/blackbox.yaml
-          env: null
-          image: prom/blackbox-exporter:v0.22.0
+          image: quay.io/prometheus/blackbox-exporter:v0.27.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
+            failureThreshold: 3
             httpGet:
-              path: /health
+              path: /-/healthy
               port: http
           name: blackbox-exporter
           ports:
@@ -48,9 +49,8 @@ spec:
               name: http
           readinessProbe:
             httpGet:
-              path: /health
+              path: /-/healthy
               port: http
-          resources: {}
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -63,7 +63,6 @@ spec:
               name: config
       hostNetwork: false
       restartPolicy: Always
-      securityContext: {}
       serviceAccountName: blackbox-exporter-prometheus-blackbox-exporter
       volumes:
         - configMap:
