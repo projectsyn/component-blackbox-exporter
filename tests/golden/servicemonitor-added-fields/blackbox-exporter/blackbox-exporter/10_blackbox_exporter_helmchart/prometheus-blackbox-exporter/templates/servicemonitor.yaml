@@ -5,19 +5,22 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: 0.23.0
-    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+    app.kubernetes.io/version: v0.27.0
+    helm.sh/chart: prometheus-blackbox-exporter-11.4.2
   name: blackbox-exporter-prometheus-blackbox-exporter-http
   namespace: syn-blackbox-exporter
 spec:
   endpoints:
-    - interval: 30s
+    - honorTimestamps: true
+      interval: 30s
       metricRelabelings:
-        - replacement: https://my-url
+        - action: replace
+          replacement: https://my-url
           sourceLabels:
             - instance
           targetLabel: instance
-        - replacement: http
+        - action: replace
+          replacement: http
           sourceLabels:
             - target
           targetLabel: target
@@ -46,19 +49,22 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: 0.23.0
-    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+    app.kubernetes.io/version: v0.27.0
+    helm.sh/chart: prometheus-blackbox-exporter-11.4.2
   name: blackbox-exporter-prometheus-blackbox-exporter-openid
   namespace: syn-blackbox-exporter
 spec:
   endpoints:
-    - interval: 30s
+    - honorTimestamps: true
+      interval: 30s
       metricRelabelings:
-        - replacement: https://my-url:13342/openid/
+        - action: replace
+          replacement: https://my-url:13342/openid/
           sourceLabels:
             - instance
           targetLabel: instance
-        - replacement: openid
+        - action: replace
+          replacement: openid
           sourceLabels:
             - target
           targetLabel: target
@@ -87,19 +93,22 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: 0.23.0
-    helm.sh/chart: prometheus-blackbox-exporter-7.2.0
+    app.kubernetes.io/version: v0.27.0
+    helm.sh/chart: prometheus-blackbox-exporter-11.4.2
   name: blackbox-exporter-prometheus-blackbox-exporter-api
   namespace: syn-blackbox-exporter
 spec:
   endpoints:
-    - interval: 30s
+    - honorTimestamps: true
+      interval: 30s
       metricRelabelings:
-        - replacement: https://my-url:13344/api
+        - action: replace
+          replacement: https://my-url:13344/api
           sourceLabels:
             - instance
           targetLabel: instance
-        - replacement: api
+        - action: replace
+          replacement: api
           sourceLabels:
             - target
           targetLabel: target
