@@ -4,7 +4,7 @@ parameters:
       multi_instance: true
       multi_tenant: true
 
-    namespace: syn-blackbox-exporter
+    namespace: syn-${_instance}
     createNamespace: true
 
     charts:
