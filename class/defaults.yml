@@ -9,7 +9,7 @@ parameters:
     createNamespace: true
 
     charts:
-      blackbox_exporter: 11.9.1
+      blackbox_exporter: 11.9.2
 
     helmValues:
       pspEnabled: false
