@@ -4,7 +4,7 @@ local params = inv.parameters.blackbox_exporter;
 local argocd = import 'lib/argocd.libjsonnet';
 local instance = inv.parameters._instance;
 
-local app = argocd.App(instance, params.namespace) {
+local app = argocd.App(instance, params.namespace, base='blackbox-exporter') {
   spec+: {
     ignoreDifferences: [
       {
