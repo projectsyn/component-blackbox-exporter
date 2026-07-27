@@ -8,5 +8,19 @@ local instance = inv.parameters._instance;
 
 // Define outputs below
 {
-  [if params.createNamespace then params.namespace]: kube.Namespace(params.namespace),
+  [if params.createNamespace then params.namespace]: kube.Namespace(params.namespace) + {
+    metadata+: {
+      labels+:
+        {
+          component: 'blackbox_exporter',
+          instance: instance,
+        }
+        + params.namespaceLabels,
+      annotations+:
+        {
+          'syn.tools/source': 'https://github.com/projectsyn/component-blackbox-exporter.git',
+        }
+        + params.namespaceAnnotations,
+    },
+  },
 }
