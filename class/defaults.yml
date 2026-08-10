@@ -11,7 +11,7 @@ parameters:
     namespaceAnnotations: {}
 
     charts:
-      blackbox_exporter: 11.15.1
+      blackbox_exporter: 11.17.2
 
     helmValues:
       pspEnabled: false
