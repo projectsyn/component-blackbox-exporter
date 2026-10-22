@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: v0.28.0
-    helm.sh/chart: prometheus-blackbox-exporter-11.19.1
+    app.kubernetes.io/version: v0.29.1
+    helm.sh/chart: prometheus-blackbox-exporter-11.20.2
   name: blackbox-exporter-prometheus-blackbox-exporter-http
   namespace: syn-blackbox-exporter
 spec:
@@ -49,8 +49,8 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: v0.28.0
-    helm.sh/chart: prometheus-blackbox-exporter-11.19.1
+    app.kubernetes.io/version: v0.29.1
+    helm.sh/chart: prometheus-blackbox-exporter-11.20.2
   name: blackbox-exporter-prometheus-blackbox-exporter-openid
   namespace: syn-blackbox-exporter
 spec:
@@ -93,8 +93,8 @@ metadata:
     app.kubernetes.io/instance: blackbox-exporter
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
-    app.kubernetes.io/version: v0.28.0
-    helm.sh/chart: prometheus-blackbox-exporter-11.19.1
+    app.kubernetes.io/version: v0.29.1
+    helm.sh/chart: prometheus-blackbox-exporter-11.20.2
   name: blackbox-exporter-prometheus-blackbox-exporter-api
   namespace: syn-blackbox-exporter
 spec:
