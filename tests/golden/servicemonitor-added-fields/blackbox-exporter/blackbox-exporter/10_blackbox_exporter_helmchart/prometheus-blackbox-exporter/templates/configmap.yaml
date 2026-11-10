@@ -32,6 +32,6 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: prometheus-blackbox-exporter
     app.kubernetes.io/version: v0.29.1
-    helm.sh/chart: prometheus-blackbox-exporter-11.21.1
+    helm.sh/chart: prometheus-blackbox-exporter-11.21.2
   name: blackbox-exporter-prometheus-blackbox-exporter
   namespace: syn-blackbox-exporter
